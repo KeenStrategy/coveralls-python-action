@@ -168,6 +168,7 @@ def main():
     if debug:
         print("Going to show git config")
         import subprocess
+        subprocess.run(["git", "config", "--global", "--add", "safe.directory", "/github/workspace"])
         subprocess.run(["git", "config", "-l"])
     if parallel_finished:
         post_webhook(repo_token)
