@@ -77,7 +77,7 @@ def run_coveralls(
     for service_name in service_names:
         log.info(f"Trying submitting coverage with service_name: {service_name}...")
         with cd(base_path):
-            coveralls = Coveralls(service_name=service_name, **kwargs)
+            coveralls = Coveralls(service_name=service_name, ignore_errors=True, **kwargs)
             try:
                 result = coveralls.wear()
                 break
@@ -168,7 +168,7 @@ def main():
     if debug:
         print("Going to show git config")
         import subprocess
-        subprocess.run(["git", "config", "--global", "--add", "safe.directory", "/github/workspace"])
+        # subprocess.run(["git", "config", "--global", "--add", "safe.directory", "/github/workspace"])
         subprocess.run(["git", "config", "-l"])
     if parallel_finished:
         post_webhook(repo_token)
